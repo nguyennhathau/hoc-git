@@ -1,7 +1,7 @@
- #CÁC LỆNH CĂN BẢN TRONG LINUX
+ #1.CÁC LỆNH CĂN BẢN TRONG LINUX
 
 
-##Part1: System information
+##2.Part1: System information
 
 arch hiển thị cấu trúc của máy(1)
 uname -m hiển thị cấu trúc của máy(2)
@@ -24,7 +24,7 @@ cal 2011 hiển thị lịch năm 2011
 date 101916002011.00 thiết lập ngày và giờ - MonthDayhoursMinutesYear.Seconds(19/10/2011 - 16h30'00s)
 clock -w lưu thay đổi ngày trên BIOS
 
-##Part2: Shutdown (Restart of a system and Logout )
+##2.Part2: Shutdown (Restart of a system and Logout )
 
 shutdown -h now tắt máy
 init 0 tắt máy(2)
@@ -35,7 +35,7 @@ shutdown -r now khởi đọng lại(1)
 reboot khởi động lại(2)
 logout rời khỏi phiên làm việc
 
-##Part3: Files and Directory
+##2.Part3: Files and Directory
 
 cd /home đến thư mục '/ home'
 cd .. quay ngược lại 1 bậc
@@ -71,7 +71,7 @@ iconv -l hiện danh sách mã hóa
 iconv -f fromEncoding -t toEncoding inputFile > outputFile tạo mới từ hồ sơ được nhập vào đã cho bởi việc giả thiết nó được mã hóa trong fromEncoding và chuyển đổi đến toEncoding.
 find . -maxdepth 1 -name \*.jpg -print -exec convert "{}" -resize 80x60 "thumbs/{}" \; thay đổi kích thước tập tin trong thư mục hiện hành và gởi chúng đến thư mục thumbnails (cái này ko biết dịch sao) được iu cầu chuyển đổi từ Imagemagick
 
-##File search
+##2.File search
 
 find / -name file1 tìm tập tin và thư mục trong thư mục hệ thống root từ dấu "/"s
 find / -user user1 tìm tập tin và thư mục thuộc về 'user1'
@@ -85,7 +85,7 @@ whereis halt xuất hiện vị trí tập tin nhị phân, nguồn hoặc hư�
 which halt xuất hiện đầy đủ đường dẫn nhị phân / phân ứng dụng
 
 
-##Mounting a Filesystem
+##2.Mounting a Filesystem
 
 
 mount /dev/hda2 /mnt/hda2 mount ổ đĩa tên là hda2 - xác minh tồn tại của thư mục '/ mnt/hda2'
@@ -104,7 +104,7 @@ mount –t cifs //192.168.1.77/’Data’ /usr/test --verbose –o user=administ
 Data: Folder of windows share.
 
 
-##Disk Space
+##2.Disk Space
 
 
 df -h hiện danh sách phân vùng được mount
@@ -114,7 +114,7 @@ du -sk * | sort -rn hiện dung lượng của tập tin và thư mục và sắ
 rpm -q -a --qf '%10{SIZE}t%{NAME}n' | sort -k1,1n hiện dung lượng được sử dụng bởi gói được cài đặt và sắp xếp theo dung lượng (fedora, redhat and like)
 dpkg-query -W -f='${Installed-Size;10}t${Package}n' | sort -k1,1n hiện dung lượng được cài đặt bởi gói deb và sắp xếp theo dung lượng (ubuntu, debian and like)
 
-##Users and Groups
+##2.Users and Groups
 
 groupadd group_name tạo một nhóm mới
 groupdel group_name xóa một nhóm
