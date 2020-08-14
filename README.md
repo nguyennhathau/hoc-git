@@ -1,1 +1,3 @@
-# bai hoc dau tien voi git
+note
+# Git
+# Tieng anh
