@@ -1,1 +1,2 @@
-go to forder	cd ./note
+aaa
+add 2
