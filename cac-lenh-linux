@@ -1,29 +1,5 @@
  #1.CÁC LỆNH CĂN BẢN TRONG LINUX
 
-
-##2.Part1: System information
-
-arch hiển thị cấu trúc của máy(1)
-uname -m hiển thị cấu trúc của máy(2)
-uname -r hiển thị phiên bản kernel đang sử dụng
-dmidecode -q Hiển thị hệ thống phần cứng - (SMBIOS / DMI)
-hdparm -i /dev/hda trình bày những đặc trưng của 1 ổ cứng ( lưu ý, hard disk cap ATA là hda còn SATA là sda )
-
-hdparm -tT /dev/sda test thử ổ cứng
-cat /proc/cpu hiển thị thông tin CPU
-cat /proc/interrupts hiển thị sự ngắt của các tiến trình
-cat /proc/meminfo hiển thị bộ nhớ đang sử dụng
-cat /proc/swaps hiển thị file ở phân vùng swap
-cat /proc/version hiển thị phiên bản kernel
-cat /proc/net/dev cho thấy card mạng và thông tin thống kê
-cat /proc/mounts hiển thị file hệ thống được sử dụng cho mounts
-lspci -tv hiển thị thiết bị PCIdisplay PCI devices
-lsusb -tv hiển thị thiết bị USB
-date hiển thị ngày hệ thống
-cal 2011 hiển thị lịch năm 2011
-date 101916002011.00 thiết lập ngày và giờ - MonthDayhoursMinutesYear.Seconds(19/10/2011 - 16h30'00s)
-clock -w lưu thay đổi ngày trên BIOS
-
 ##2.Part2: Shutdown (Restart of a system and Logout )
 
 shutdown -h now tắt máy
@@ -48,9 +24,7 @@ ls hiển thị tập tin và thư mục
 ls -F hiển thị tập tin trong thư mục
 ls -l hiển thị chi tiết tập tin và thư mục
 ls -a hiển thị tập tin ẩn
-ls *[0-9]* hiển thị tập tin và thư mục có chứa số
-tree hiển thị tập tin và thư mục theo cấu trúc cây
-lstree hiển thị tập tin và thư mục theo cấu trúc cây(2)
+
 mkdir dir1 tạo 1 thư mục có tên 'dir1'
 mkdir dir1 dir2 tạo cùng lúc 2 thư mục
 mkdir -p /tmp/dir1/dir2 tạo ra 1 cây thư mục
@@ -60,49 +34,6 @@ rm -rf dir1 xóa thư mục 'dir1' và tất cả các tập tin trong thư mụ
 rm -rf dir1 dir2 xóa cùng lúc 2 thư thư mục và tất cả các tập tin trong hai thư mục đó
 mv dir1 new_dir đổi tên/ di chuyển 1 tập tin hoặc thư mục
 cp file1 file2 sao chép 1 tập tin
-cp dir/* . sao chép tất cả các tập tin trong thư mục
-cp -a /tmp/dir1 . sao chép thư mục đang làm việc
-cp -a dir1 dir2 sao chép một thư mục
-ln -s file1 lnk1 tạo một đường dẫn đến 1 tập tin hoặc thư mục
-ln file1 lnk1 tạo 1 đường dẫn vật lý đến 1 tập tin hoặc thư mục
-touch -t 1110191600 file1 thay đổi thời gian tạo file hoặc thư mục- (YYMMDDhhmm) (19/10/2011-16h00')
-file file1 hiển thị kiểu tập tin ở chế độ văn bản
-iconv -l hiện danh sách mã hóa
-iconv -f fromEncoding -t toEncoding inputFile > outputFile tạo mới từ hồ sơ được nhập vào đã cho bởi việc giả thiết nó được mã hóa trong fromEncoding và chuyển đổi đến toEncoding.
-find . -maxdepth 1 -name \*.jpg -print -exec convert "{}" -resize 80x60 "thumbs/{}" \; thay đổi kích thước tập tin trong thư mục hiện hành và gởi chúng đến thư mục thumbnails (cái này ko biết dịch sao) được iu cầu chuyển đổi từ Imagemagick
-
-##2.File search
-
-find / -name file1 tìm tập tin và thư mục trong thư mục hệ thống root từ dấu "/"s
-find / -user user1 tìm tập tin và thư mục thuộc về 'user1'
-find /home/user1 -name \*.bin tìm tập tin với phần mở rộng '. bin' từ thư mục '/ home/user1'
-find /usr/bin -type f -atime +100 tìm tập tin nhị phần và ko được sử dụng hơn 100 ngày
-find /usr/bin -type f -mtime -10 tìm tập tin được tạo ra hoặc thay đổi trong vòng 10 ngày gần nhất
-find / -name \*.rpm -exec chmod 755 '{}' \; tìm tập tin với phần mở rộng '.rpm' và phân quyền
-find / -xdev -name \*.rpm tìm tập tin với phân mở rộng '.rpm' bỏ qua các phân vùng cdrom, pen-drive, etc.…
-locate \*.ps tìm tập tin với phần mở rộng '.ps' trước khi chạy lệnh 'updatedb'
-whereis halt xuất hiện vị trí tập tin nhị phân, nguồn hoặc hướng dẫn o
-which halt xuất hiện đầy đủ đường dẫn nhị phân / phân ứng dụng
-
-
-##2.Mounting a Filesystem
-
-
-mount /dev/hda2 /mnt/hda2 mount ổ đĩa tên là hda2 - xác minh tồn tại của thư mục '/ mnt/hda2'
-umount /dev/hda2 ngừng mount ổ đĩa có tên hda2 -
-fuser -km /mnt/hda2 ép ngừng mount khi thiết bị đang bận
-umount -n /mnt/hda2 ngừng mount và ko ghi lên tập tin /etc/mtab - có tác dụng khi tập tin có thuốc tính readonly hoặc bị full ổ cứng
-mount /dev/fd0 /mnt/floppy mount một đĩa mềm
-mount /dev/cdrom /mnt/cdrom mount a cdrom / dvdrom
-mount /dev/hdc /mnt/cdrecorder mount a cdrw / dvdrom
-mount /dev/hdb /mnt/cdrecorder mount a cdrw / dvdrom
-mount -o loop file.iso /mnt/cdrom mount một tập tin hoặc iso image
-mount -t vfat /dev/hda5 /mnt/hda5 mount a Windows FAT32 file system
-mount /dev/sda1 /mnt/usbdisk mount a usb pen-drive or flash-drive
-mount -t smbfs -o username=user,password=pass //WinClient/share/mnt/share mount a windows network share
-mount –t cifs //192.168.1.77/’Data’ /usr/test --verbose –o user=administrator,domain=HD Mount 1 folder from windows share
-Data: Folder of windows share.
-
 
 ##2.Disk Space
 
@@ -116,16 +47,6 @@ dpkg-query -W -f='${Installed-Size;10}t${Package}n' | sort -k1,1n hiện dung l�
 
 ##2.Users and Groups
 
-groupadd group_name tạo một nhóm mới
-groupdel group_name xóa một nhóm
-groupmod -n new_group_name old_group_name đổi tên nhóm
-useradd -c "Name Surname " -g admin -d /home/user1 -s /bin/bash user1 tạo một người dùng mới trong nhóm admin
 useradd user1 tạo một người dùng mới
-userdel -r user1 xóa người dùng ( '-r' loại trừ thư mục gốc)
-usermod -c "User FTP" -g system -d /ftp/user1 -s /bin/nologin user1 thay đổi thuộc tính người dùng
+
 passwd đổi mật mã
-passwd user1 đổi mật mã người dùng (chỉ dành cho root)
-chage -E 2005-12-31 user1 thiết lập độ dài của mật khẩu người dùng
-pwck kiểm tra cú pháp đúng và tập tin định dạng trong '/etc/passwd' và sự tồn tại của người dùng
-grpck kiểm tra cú pháp đúng và tập tin định dạng trong '/etc/group' và sự tồn tại của nhóm
-newgrp group_name đăng nhập tới một nhóm mới để thay đổi nhóm mặc định (của) những tập tin mới được tạo ra.
